@@ -1,4 +1,4 @@
-import React, { act } from "react";
+import React from "react";
 import LogoutBtn from "./LogoutBtn";
 import {Logo, Container }  from "../index";
 import { Link, useNavigate } from "react-router-dom";
