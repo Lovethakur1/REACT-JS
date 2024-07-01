@@ -24,4 +24,4 @@ function Select({ options, label, className = "", ...props }, ref) {
   );
 }
 
-export default Select;
+export default React.forwardRef(Select);
