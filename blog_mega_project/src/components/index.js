@@ -8,22 +8,22 @@ import RTE from "./RTE";
 import Select from "./Select";
 import Signup from "./Signup";
 import Login from "./Login";
-import Protected from "./AuthLayout";
+import AuthLayout from "./AuthLayout";
 import PostCard from "./PostCard";
 import PostForm from "./post-form/PostForm";
 
-export { 
-    Header,
-     Footer,
-      Logo,
-       Container,
-        Button, 
-        Input,
-         RTE,
-          Select ,
-              Signup,
-                Login,
-                 Protected,
-                  PostCard,
-                PostForm
-        };
+export {
+  Header,
+  Footer,
+  Logo,
+  Container,
+  Button,
+  Input,
+  RTE,
+  Select,
+  Signup,
+  Login,
+  AuthLayout,
+  PostCard,
+  PostForm,
+};
