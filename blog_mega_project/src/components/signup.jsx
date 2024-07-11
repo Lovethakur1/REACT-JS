@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
-import { login as authLogin } from "../store/authSlice";
+import { login } from "../store/authSlice";
 import authService from "../appwrite/auth";
 import { Button, Input, Logo } from "./index";
 
@@ -12,16 +12,16 @@ function Signup() {
   const { register, handleSubmit } = useForm();
   const [error, setError] = useState("");
 
-  const create = async (data) => {
+  const createAccount = async (data) => {
     setError("");
     try {
       const userData = await authService.createAccount(data);
+
       if (userData) {
-        const currentUser = await authService.getCurrentUser();
-        if (currentUser) {
-          dispatch(authLogin(currentUser));
-          navigate("/");
-        }
+        const userData = await authService.getCurrentUser();
+        if (userData) dispatch(login(userData));
+
+        navigate("/");
       }
     } catch (error) {
       setError(error.message);
@@ -29,7 +29,7 @@ function Signup() {
   };
 
   return (
-    <div className="flex items-center justify-center">
+    <div className="flex items-center justify-center w-full py-12 px-4 sm:px-6 lg:px-8">
       <div className="mx-auto w-full max-w-lg bg-gray-800 rounded-xl p-10 border border-black/10">
         <div className="mb-2 flex justify-center">
           <span className="inline-block w-full max-w-[100px]">
@@ -49,7 +49,7 @@ function Signup() {
           </Link>
         </p>
         {error && <p className="text-red-600 mt-8 text-center">{error}</p>}
-        <form onSubmit={handleSubmit(create)}>
+        <form onSubmit={handleSubmit(createAccount)} className="mt-8">
           <div className="space-y-5">
             <Input
               label="Full Name: "
@@ -78,7 +78,7 @@ function Signup() {
               className1="text-white"
               placeholder="Enter your password"
               {...register("password", {
-                required: "Password is required",
+                required: true,
               })}
             />
             <Button type="submit" className="w-full">
