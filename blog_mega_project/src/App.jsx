@@ -23,12 +23,12 @@ function App() {
   })
   return ! loading ? (
     <div>
-      <div>
+      
         <Header/>
-        todo:
+        
         <Outlet/>
         <Footer/>
-      </div>
+      
     </div>
   ) : null
 }
